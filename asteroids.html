@@ -13,7 +13,8 @@
   </style>
 </head>
 <body>
-  <canvas id="gameCanvas" width="800" height="600"></canvas>
+  <!--canvas id="gameCanvas" width="800" height="600"></canvas-->
+  <canvas id="gameCanvas" width="800" height="500"></canvas>
   <audio id="shoot"         src="pew-pew.wav" preload="auto"></audio>
   <audio id="thrustSound"   src="thrust.wav" preload="auto"></audio>
   <audio id="hit"           src="pew-pew.wav" preload="auto"></audio>
@@ -30,6 +31,9 @@
 
 
     let keys = {
+      KeyW: false,
+      KeyA: false,
+      KeyD: false,
       ArrowLeft: false,
       ArrowRight: false,
       ArrowUp: false,
@@ -364,13 +368,13 @@
 
 
       // handle controls
-      if (keys.ArrowLeft) {
+      if (keys.ArrowLeft || keys.KeyA) {
         ship.rotate(-1);
       }
-      if (keys.ArrowRight) {
+      if (keys.ArrowRight || keys.KeyD) {
         ship.rotate(1);
       }
-      if (keys.ArrowUp) {
+      if (keys.ArrowUp || keys.KeyW) {
         ship.thrust();
       }
 
@@ -393,8 +397,10 @@
 
 
     window.addEventListener('keydown', (e) => {
+
       if (e.code in keys) {
         keys[e.code] = true;
+
 
       } else if (e.code === 'Space') {
         // limit concurrent shots
