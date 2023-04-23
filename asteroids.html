@@ -27,7 +27,9 @@
     let gameOver = false;
     let score = 0;
 
-    let dirtyMode = false;
+    const urlParams = new URLSearchParams(window.location.search);
+    const dirtyMode = urlParams.get('dirtyMode') === 'true';
+    //let dirtyMode = false;
 
 
     let keys = {
